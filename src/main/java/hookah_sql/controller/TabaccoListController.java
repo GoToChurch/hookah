@@ -175,11 +175,24 @@ public class TabaccoListController implements Controller {
 
     @FXML
     private void handleNewTabacco() {
-        Tabacco tempTabacco = Utils.castTabaccoInSpecificClass(tabaccoAddNameField.getText());
-        boolean okClicked = fxMain.openTabaccoEditDialog(tempTabacco);
-        if (okClicked) {
-            TabaccoDAO.add(tempTabacco);
-            refresh(TabaccoDAO.getTabaccoList(Utils.getTobaccoEnumByName(tempTabacco.getTabaccoName())));
+        if (!tabaccoAddNameField.getText().equals("")) {
+            Tabacco tempTabacco = Utils.castTabaccoInSpecificClass(tabaccoAddNameField.getText());
+            boolean okClicked = fxMain.openTabaccoEditDialog(tempTabacco);
+            if (okClicked) {
+                TabaccoDAO.add(tempTabacco);
+                refresh(TabaccoDAO.getTabaccoList(Utils.getTobaccoEnumByName(tempTabacco.getTabaccoName())));
+            }
         }
+
+        else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(FxMain.getPrimaryStage());
+            alert.setTitle("No tabacco name entered");
+            alert.setHeaderText("No tabacco name entered");
+            alert.setContentText("Please enter tabacco name in text field.");
+
+            alert.showAndWait();
+        }
+
     }
 }
