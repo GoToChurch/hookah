@@ -1,6 +1,10 @@
 package hookah_sql.tabacco;
 
 import hookah_sql.mix.Mix;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -40,6 +44,24 @@ public class Tabacco implements Serializable {
     @Max(10)
     @Column(name = "hardness", nullable = false)
     protected int hardness;
+
+    @Transient
+    private StringProperty tabaccoProperty;
+
+    @Transient
+    private StringProperty nameProperty;
+
+    @Transient
+    private StringProperty flavorProperty;
+
+    @Transient
+    private StringProperty descriptionProperty;
+
+    @Transient
+    private StringProperty tasteProperty;
+
+    @Transient
+    private IntegerProperty hardnessProperty;
 
     public Tabacco() {
 
@@ -97,6 +119,72 @@ public class Tabacco implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNameProperty() {
+        return nameProperty.get();
+    }
+
+    public StringProperty nameProperty() {
+        return nameProperty;
+    }
+
+    public String getFlavorProperty() {
+        return flavorProperty.get();
+    }
+
+    public StringProperty flavorProperty() {
+        return flavorProperty;
+    }
+
+    public String getDescriptionProperty() {
+        return descriptionProperty.get();
+    }
+
+    public StringProperty descriptionProperty() {
+        return descriptionProperty;
+    }
+
+    public String getTasteProperty() {
+        return tasteProperty.get();
+    }
+
+    public StringProperty tasteProperty() {
+        return tasteProperty;
+    }
+
+    public int getHardnessProperty() {
+        return hardnessProperty.get();
+    }
+
+    public IntegerProperty hardnessProperty() {
+        return hardnessProperty;
+    }
+
+    public String getTabaccoProperty() {
+        return tabaccoProperty.get();
+    }
+
+    public StringProperty tabaccoProperty() {
+        return tabaccoProperty;
+    }
+
+    public String getTabaccoName() {
+        return this.getClass().getSimpleName();
+    }
+
+    public void prepareProperties() {
+        tabaccoProperty = new SimpleStringProperty(this.getClass().getSimpleName());
+        nameProperty = new SimpleStringProperty(name);
+        flavorProperty = new SimpleStringProperty(flavor);
+        descriptionProperty = new SimpleStringProperty(description);
+        tasteProperty = new SimpleStringProperty(taste);
+        hardnessProperty = new SimpleIntegerProperty(hardness);
+    }
+
+    public boolean isEmpty() {
+        return Objects.equals(name, null) && Objects.equals(flavor, null) && Objects.equals(taste, null)
+                && Objects.equals(hardness, 0);
     }
 
     @Override

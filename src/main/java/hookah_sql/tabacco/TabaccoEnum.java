@@ -1,5 +1,6 @@
 package hookah_sql.tabacco;
 
+
 public enum TabaccoEnum {
     ALL,
     BLACKBURN,

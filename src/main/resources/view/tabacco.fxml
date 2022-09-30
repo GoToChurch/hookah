@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.TabaccoController">
+    <children>
+        <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;">
+            <children>
+                <Label layoutX="841.0" layoutY="20.0" prefHeight="69.0" prefWidth="238.0" text="Hookah" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Bookman Old Style" size="59.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Button fx:id="TabaccoListButton" layoutX="687.0" layoutY="220.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить список табаков" textAlignment="CENTER" textFill="#be6060">
+            <font>
+                <Font name="Bookman Old Style" size="34.0" />
+            </font>
+        </Button>
+        <Button fx:id="TabaccoButton" layoutX="687.0" layoutY="682.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить конкретный табак" textAlignment="CENTER" textFill="#be6060">
+            <font>
+                <Font name="Bookman Old Style" size="34.0" />
+            </font>
+        </Button>
+      <Button fx:id="BackButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
+         <font>
+            <Font name="Bookman Old Style" size="30.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

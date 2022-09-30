@@ -1,13 +1,12 @@
 package hookah_sql.mix;
 
-import hookah_sql.ConsoleHelper;
+import hookah_sql.config.Context;
+import hookah_sql.dao.TabaccoDAO;
 import hookah_sql.tabacco.Tabacco;
 import hookah_sql.tabacco.TabaccoEnum;
-import hookah_sql.tabacco.Tabaccos;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -17,24 +16,24 @@ public class Mixer {
     private static final Logger logger = LoggerFactory.getLogger(Mixer.class);
 
     private final Random random = new Random();
-    private int mixIter = 0;
+    private int mixIter;
 
-    @Autowired
     private Mix mix;
 
-    @Autowired
-    private Tabaccos tabaccos;
-
     private List<Tabacco> tabaccoList;
+
+    public Mixer() {
+        this.tabaccoList = TabaccoDAO.getTabaccoList(TabaccoEnum.ALL);
+    }
 
     public Mix mix(int tabaccoCount) {
         logger.info("Making new mix from {} tabacco", tabaccoCount);
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
 
         for (int i = 0; i < tabaccoCount;) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix)) {
+            if (!isSameTabacco(tabacco) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 i++;
             }
@@ -48,11 +47,12 @@ public class Mixer {
     public Mix mix(int tabaccoCount, int hardness) {
         logger.info("Making new mix from {} tabacco and with {} hardness", tabaccoCount, hardness);
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
+        mixIter = 0;
 
         while (true) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix)) {
+            if (!isSameTabacco(tabacco) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 mixIter++;
             }
@@ -75,7 +75,7 @@ public class Mixer {
     public Mix mix(int tabaccoCount, Tabacco[] wantedTabaccos) {
         logger.info("Making new mix from {} and {} flavors", Arrays.toString(wantedTabaccos), tabaccoCount);
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
 
         if (wantedTabaccos.length > tabaccoCount) {
             return null;
@@ -83,7 +83,7 @@ public class Mixer {
 
         for (int i = 0; i < tabaccoCount;) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix) && isProperTabacco(tabacco, wantedTabaccos, mix)) {
+            if (!isSameTabacco(tabacco) && isProperTabacco(tabacco, wantedTabaccos) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 i++;
             }
@@ -94,14 +94,14 @@ public class Mixer {
         return mix;
     }
 
-    public Mix mix(int tabaccoCount, String[] tastes) {
-        logger.info("Making new mix from {} tobaccos and with {} tastes", tabaccoCount, Arrays.toString(tastes));
+    public Mix mix(int tabaccoCount, List<String> tastes) {
+        logger.info("Making new mix from {} tobaccos and with {} tastes", tabaccoCount, tastes.toString());
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
 
         for (int i = 0; i < tabaccoCount;) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix) && isProperTaste(tastes, tabacco, mix)) {
+            if (!isSameTabacco(tabacco) && isProperTaste(tastes, tabacco) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 i++;
             }
@@ -112,15 +112,16 @@ public class Mixer {
         return mix;
     }
 
-    public Mix mix(int tabaccoCount, int hardness, String[] tastes) {
+    public Mix mix(int tabaccoCount, int hardness, List<String> tastes) {
         logger.info("Making new mix from {} tobaccos with {} tastes and with {} hardness",
-                tabaccoCount, Arrays.toString(tastes), hardness);
+                tabaccoCount, tastes.toString(), hardness);
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
+        mixIter = 0;
 
         while (true) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix) && isProperTaste(tastes, tabacco, mix)) {
+            if (!isSameTabacco(tabacco) && isProperTaste(tastes, tabacco) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 mixIter++;
             }
@@ -141,11 +142,11 @@ public class Mixer {
         return mix;
     }
 
-    public Mix mix(int tabaccoCount, String[] tastes, Tabacco[] wantedTabaccos) {
+    public Mix mix(int tabaccoCount, List<String> tastes, Tabacco[] wantedTabaccos) {
         logger.info("Making new mix from {} with {} tastes",
-                Arrays.toString(wantedTabaccos), Arrays.toString(tastes));
+                Arrays.toString(wantedTabaccos), tastes.toString());
 
-        tabaccoList = prepare();
+        mix = Context.getInstance().getContext().getBean("mix", Mix.class);
 
         if (wantedTabaccos.length > tabaccoCount) {
             return null;
@@ -153,8 +154,8 @@ public class Mixer {
 
         for (int i = 0; i < tabaccoCount;) {
             Tabacco tabacco = tabaccoList.get(random.nextInt(tabaccoList.size()));
-            if (!isSameTabacco(tabacco, mix) && isProperTabacco(tabacco, wantedTabaccos, mix)
-                    && isProperTaste(tastes, tabacco, mix)) {
+            if (!isSameTabacco(tabacco) && isProperTabacco(tabacco, wantedTabaccos)
+                    && isProperTaste(tastes, tabacco) && !isAlreadyInMix(tabacco)) {
                 mix.addToMix(tabacco);
                 i++;
             }
@@ -165,8 +166,8 @@ public class Mixer {
         return mix;
     }
 
-    private boolean isProperTabacco(Tabacco tabacco, Tabacco[] tabaccos, Mix mix) {
-        if (!isMixGotAllWantedTabaccos(mix, tabaccos)) {
+    private boolean isProperTabacco(Tabacco tabacco, Tabacco[] tabaccos) {
+        if (!isMixGotAllWantedTabaccos(tabaccos)) {
             for (Tabacco tabacco1 : tabaccos) {
                 if (tabacco.getClass().getSimpleName().equals(tabacco1.getClass().getSimpleName())) {
                     for (Tabacco tabacco2 : mix.getTabaccoList()) {
@@ -189,8 +190,8 @@ public class Mixer {
         return false;
     }
 
-    private boolean isProperTaste(String[] tastes, Tabacco tabacco, Mix mix) {
-        if (!isMixGotAllWantedTastes(mix, tastes)) {
+    private boolean isProperTaste(List<String> tastes, Tabacco tabacco) {
+        if (!isMixGotAllWantedTastes(tastes)) {
             for (String taste : tastes) {
                 if (tabacco.getTaste().contains(taste) && !mix.getTaste().contains(taste)) {
                     return true;
@@ -208,16 +209,15 @@ public class Mixer {
         return false;
     }
 
-    private List<Tabacco> prepare() {
-        mix.clearMix();
-        return tabaccos.getTabaccoList(TabaccoEnum.ALL);
+    private boolean isAlreadyInMix(Tabacco tabacco) {
+        return mix.getFlavors().toLowerCase().contains(tabacco.getFlavor().toLowerCase());
     }
 
-    private boolean isSameTabacco(Tabacco tabacco, Mix mix) {
+    private boolean isSameTabacco(Tabacco tabacco) {
         return mix.getTabaccoList().contains(tabacco);
     }
 
-    private boolean isMixGotAllWantedTabaccos(Mix mix, Tabacco[] tabaccos) {
+    private boolean isMixGotAllWantedTabaccos(Tabacco[] tabaccos) {
 
         if (mix.getTabaccoList().size() == 0) {
             return false;
@@ -238,8 +238,8 @@ public class Mixer {
         return true;
     }
 
-    private boolean isMixGotAllWantedTastes(Mix mix, String[] tastes) {
-        return CollectionUtils.containsAll(Arrays.asList(mix.getTaste().split(", ")), Arrays.asList(tastes));
+    private boolean isMixGotAllWantedTastes(List<String> tastes) {
+        return CollectionUtils.containsAll(Arrays.asList(mix.getTaste().split(", ")), tastes);
     }
 
 

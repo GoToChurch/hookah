@@ -1,9 +1,10 @@
 package hookah_sql.mix;
 
-import hookah_sql.dao.MixDAO;
-import hookah_sql.hibernate.HibernateUtils;
 import hookah_sql.tabacco.Tabacco;
-import org.hibernate.Session;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -42,6 +43,18 @@ public class Mix {
     @NotNull
     @Column(name = "hardness", nullable = false)
     private int hardness = 0;
+
+    @Transient
+    private StringProperty namesProperty;
+
+    @Transient
+    private StringProperty flavorsProperty;
+
+    @Transient
+    private StringProperty tasteProperty;
+
+    @Transient
+    private IntegerProperty hardnessProperty;
 
     public void addToMix(Tabacco tabacco) {
         tabaccoList.add(tabacco);
@@ -117,18 +130,49 @@ public class Mix {
         this.hardness = hardness;
     }
 
-    public void save() {
-        Session session = HibernateUtils.getSession();
+    public String getNamesProperty() {
+        return namesProperty.get();
+    }
 
-        MixDAO.add(this, session);
+    public StringProperty namesProperty() {
+        return namesProperty;
+    }
 
-        session.close();
+    public String getFlavorsProperty() {
+        return flavorsProperty.get();
+    }
+
+    public StringProperty flavorsProperty() {
+        return flavorsProperty;
+    }
+
+    public String getTasteProperty() {
+        return tasteProperty.get();
+    }
+
+    public StringProperty tasteProperty() {
+        return tasteProperty;
+    }
+
+    public int getHardnessProperty() {
+        return hardnessProperty.get();
+    }
+
+    public IntegerProperty hardnessProperty() {
+        return hardnessProperty;
     }
 
     public void finilizeMix() {
         names = names.substring(0, names.length() - 2);
         flavors = flavors.substring(0, flavors.length() - 2);
         taste = taste.substring(0, taste.length() - 2);
+    }
+
+    public void prepareProperties() {
+        namesProperty = new SimpleStringProperty(names);
+        flavorsProperty = new SimpleStringProperty(flavors);
+        tasteProperty = new SimpleStringProperty(taste);
+        hardnessProperty = new SimpleIntegerProperty(hardness);
     }
 
     @Override

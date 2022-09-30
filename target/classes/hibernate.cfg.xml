@@ -19,7 +19,6 @@
         <mapping class="hookah_sql.tabacco.Tangiers" />
         <mapping class="hookah_sql.tabacco.Satyr" />
         <mapping class="hookah_sql.tabacco.Duft" />
-        <mapping class="hookah_sql.tabacco.Duft" />
         <mapping class="hookah_sql.tabacco.Tabacco" />
         <mapping class="hookah_sql.mix.Mix" />
     </session-factory>

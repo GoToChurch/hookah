@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.RandomMixController">
+    <children>
+        <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;">
+            <children>
+                <Label layoutX="841.0" layoutY="20.0" prefHeight="69.0" prefWidth="238.0" text="Hookah" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Bookman Old Style" size="59.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <Button fx:id="GetRandomMixButton" layoutX="34.0" layoutY="957.0" mnemonicParsing="false" onAction="#getRandomMix" prefHeight="90.0" prefWidth="578.0" text="Получить микс" textAlignment="CENTER" textFill="#be6060">
+            <font>
+                <Font name="Bookman Old Style" size="30.0" />
+            </font>
+        </Button>
+      <TextField fx:id="TabaccoCountTextField" layoutX="34.0" layoutY="162.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите количество табаков">
+         <font>
+            <Font name="Bookman Old Style" size="15.0" />
+         </font></TextField>
+      <TextField fx:id="HardnessTextField" layoutX="34.0" layoutY="348.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемую крепость (введите 0, если все равно)">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <TextField fx:id="TabaccosTextField" layoutX="34.0" layoutY="561.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые табаки (оставть пустым, если все равно)">
+         <font>
+            <Font name="Bookman Old Style" size="15.0" />
+         </font></TextField>
+      <TextField fx:id="TastesTextField" layoutX="34.0" layoutY="777.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые вкусовые качества (оставтьте пустым если все равно)">
+         <font>
+            <Font name="Bookman Old Style" size="15.0" />
+         </font></TextField>
+      <Button fx:id="SaveMixButton" layoutX="777.0" layoutY="784.0" mnemonicParsing="false" onAction="#saveMix" prefHeight="84.0" prefWidth="561.0" text="Сохранить микс" textAlignment="CENTER" textFill="#be6060">
+         <font>
+            <Font name="Bookman Old Style" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="BackButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
+         <font>
+            <Font name="Bookman Old Style" size="30.0" />
+         </font>
+      </Button>
+      <GridPane layoutX="776.0" layoutY="162.0" prefHeight="583.0" prefWidth="1117.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.666748046875" minWidth="10.0" prefWidth="172.6666259765625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="961.0" minWidth="10.0" prefWidth="712.3333740234375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="58.0" prefWidth="526.0" text="Крепость" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bookman Old Style" size="25.0" />
+               </font>
+            </Label>
+            <Label prefHeight="58.0" prefWidth="526.0" text="Табаки">
+               <font>
+                  <Font name="Bookman Old Style" size="25.0" />
+               </font>
+            </Label>
+            <Label prefHeight="58.0" prefWidth="526.0" text="Вкусы" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bookman Old Style" size="25.0" />
+               </font>
+            </Label>
+            <Label prefHeight="58.0" prefWidth="526.0" text="Вкусовые качества" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bookman Old Style" size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="randomMixTabaccosValue" prefHeight="58.0" prefWidth="526.0" text="Табаки" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Bookman Old Style" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="randomMixFlavorsValue" prefHeight="58.0" prefWidth="526.0" text="Вкусы" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bookman Old Style" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="randomMixTastesValue" prefHeight="58.0" prefWidth="526.0" text="Вкусовые качества" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Bookman Old Style" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="randomMixHardnessValue" prefHeight="58.0" prefWidth="526.0" text="Крепость" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bookman Old Style" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+    </children>
+</AnchorPane>
