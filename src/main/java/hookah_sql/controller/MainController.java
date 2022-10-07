@@ -10,17 +10,17 @@ import org.springframework.stereotype.Component;
 public class MainController implements Controller {
 
     @FXML
-    private Button MixButton;
+    private Button mixButton;
 
     @FXML
-    private Button TabaccoButton;
+    private Button tabaccoButton;
 
     private FxMain fxMain;
 
     @FXML
     private void initialize() {
         fxMain = Context.getInstance().getContext().getBean("fxMain", FxMain.class);
-        MixButton.setOnAction(event -> fxMain.openNewScene(MixButton, "/view/mix.fxml"));
-        TabaccoButton.setOnAction(event -> fxMain.openNewScene(TabaccoButton, "/view/tabacco.fxml"));
+        mixButton.setOnAction(event -> fxMain.openNewScene(mixButton, "/view/mix.fxml"));
+        tabaccoButton.setOnAction(event -> fxMain.openNewScene(tabaccoButton, "/view/tabacco.fxml"));
     }
 }

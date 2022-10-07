@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,12 +69,6 @@ public class Mix {
         hardness += tabacco.getHardness();
     }
 
-    public void addToMix(List<Tabacco> tabaccos) {
-        for (Tabacco tabacco : tabaccos) {
-           addToMix(tabacco);
-        }
-    }
-
     public void clearMix() {
         tabaccoList.clear();
         names = "";
@@ -86,16 +81,16 @@ public class Mix {
         hardness /= tabaccoList.size();
     }
 
+    public List<Tabacco> getTabaccoList() {
+        return tabaccoList;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public List<Tabacco> getTabaccoList() {
-        return tabaccoList;
     }
 
     public String getNames() {
@@ -162,6 +157,7 @@ public class Mix {
         return hardnessProperty;
     }
 
+
     public void finilizeMix() {
         names = names.substring(0, names.length() - 2);
         flavors = flavors.substring(0, flavors.length() - 2);
@@ -173,6 +169,16 @@ public class Mix {
         flavorsProperty = new SimpleStringProperty(flavors);
         tasteProperty = new SimpleStringProperty(taste);
         hardnessProperty = new SimpleIntegerProperty(hardness);
+    }
+
+    public List<String> getAllTabaccosInMix() {
+        String[] tabaccos = names.split(", ");
+
+        for (int i = 0; i < tabaccos.length; i++) {
+            tabaccos[i] = tabaccos[i].replaceAll(".+\\(", "").replaceAll("\\)", "");
+        }
+
+        return Arrays.asList(tabaccos);
     }
 
     @Override

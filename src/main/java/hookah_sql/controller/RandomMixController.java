@@ -23,16 +23,16 @@ import java.util.stream.Stream;
 public class RandomMixController implements Controller {
 
     @FXML
-    private TextField TabaccoCountTextField;
+    private TextField tabaccoCountTextField;
 
     @FXML
-    private TextField HardnessTextField;
+    private TextField hardnessTextField;
 
     @FXML
-    private TextField TabaccosTextField;
+    private TextField tabaccosTextField;
 
     @FXML
-    private TextField TastesTextField;
+    private TextField tastesTextField;
 
     @FXML
     private Label randomMixTabaccosValue;
@@ -47,7 +47,7 @@ public class RandomMixController implements Controller {
     private Label randomMixHardnessValue;
 
     @FXML
-    private Button BackButton;
+    private Button backButton;
 
     private Mix mix;
 
@@ -57,7 +57,7 @@ public class RandomMixController implements Controller {
     private void initialize() {
         fxMain = Context.getInstance().getContext().getBean("fxMain", FxMain.class);
         mix = Context.getInstance().getContext().getBean("mix", Mix.class);
-        BackButton.setOnAction(event -> fxMain.openNewScene(BackButton, "/view/mix.fxml"));
+        backButton.setOnAction(event -> fxMain.openNewScene(backButton, "/view/mix.fxml"));
         randomMixTabaccosValue.setText("");
         randomMixFlavorsValue.setText("");
         randomMixTastesValue.setText("");
@@ -85,17 +85,54 @@ public class RandomMixController implements Controller {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (TabaccoCountTextField.getText() == null || TabaccoCountTextField.getText().length() == 0) {
-            errorMessage += "Tabacco count must be not null!\n";
+        if (tabaccoCountTextField.getText() == null || tabaccoCountTextField.getText().length() == 0) {
+            errorMessage += "Количество табаков должно быть больше 0!\n";
         }
+        if (hardnessTextField.getText() == null || hardnessTextField.getText().equals("")) {
+            errorMessage += "Крепость должна быть числовой!\n";
+        }
+        else {
+            try {
+                Integer.parseInt(hardnessTextField.getText());
+            } catch (NumberFormatException e) {
+                errorMessage += "Крепость должна быть числовой!\n";
+            }
+            if (hardnessTextField.getText().equals("1") || hardnessTextField.getText().equals("2")) {
+                errorMessage += "Крепость не может быть меньше 3 и больше 0!\n";
+            }
+            if (Integer.parseInt(hardnessTextField.getText()) < 0 || Integer.parseInt(hardnessTextField.getText()) > 10) {
+                errorMessage += "Крепость не может быть меньше 0 и больше 10!\n";
+            }
+            if (Integer.parseInt(hardnessTextField.getText()) > 0 && !tabaccosTextField.getText().equals("")) {
+                errorMessage += "Нельзя ввести крепость больше 0 и желаемые табаки одновременно!\n";
+            }
+        }
+        if (!tastesTextField.getText().equals("")) {
+            for (String taste : Utils.capitalize(tastesTextField.getText()).split(", ")) {
+                if (!Utils.getAllTastes().contains(taste)) {
+                    errorMessage += String.format("Вкуса '%s' нет в базе данных!\n", taste);
+                    break;
+                }
+            }
+        }
+
+        if (!tabaccosTextField.getText().equals("")) {
+            for (String tabacco : Utils.capitalize(tabaccosTextField.getText()).split(", ")) {
+                if (!Utils.getAllTabaccos().contains(tabacco)) {
+                    errorMessage += String.format("Табака '%s' нет в базе данных!\n", tabacco);
+                    break;
+                }
+            }
+        }
+
         if (errorMessage.length() == 0) {
             return true;
         } else {
             // Показываем сообщение об ошибке.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(FxMain.getPrimaryStage());
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
+            alert.setTitle("Поля с некоректными значениями");
+            alert.setHeaderText("Пожалуйста, введите корректные значения");
             alert.setContentText(errorMessage);
 
             alert.showAndWait();
@@ -109,10 +146,10 @@ public class RandomMixController implements Controller {
         if (mix.getTabaccoList().size() != 0) {
             mix.clearMix();
         }
-        int tabaccoCount = Integer.parseInt(TabaccoCountTextField.getText());
-        int hardness = Integer.parseInt(HardnessTextField.getText());
-        List<String> tabaccoString = Stream.of(TabaccosTextField.getText().split(", ")).filter(taste -> taste != "").collect(Collectors.toList());
-        List<String> tastes = Stream.of(TastesTextField.getText().split(", ")).filter(taste -> taste != "").collect(Collectors.toList());
+        int tabaccoCount = Integer.parseInt(tabaccoCountTextField.getText());
+        int hardness = Integer.parseInt(hardnessTextField.getText());
+        List<String> tabaccoString = Stream.of(Utils.capitalize(tabaccosTextField.getText()).split(", ")).filter(taste -> taste != "").collect(Collectors.toList());
+        List<String> tastes = Stream.of(Utils.capitalize(tastesTextField.getText()).split(", ")).filter(taste -> taste != "").collect(Collectors.toList());
         Tabacco[] tabaccos = new Tabacco[tabaccoString.size()];
         if (tabaccoString.size() != 0) {
             for (int i = 0; i < tabaccoString.size(); i++) {

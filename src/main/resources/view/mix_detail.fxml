@@ -30,10 +30,10 @@
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="422.0">
                             <children>
-                                <TableView fx:id="MixListTable" layoutY="52.0" prefHeight="917.0" prefWidth="569.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                                <TableView fx:id="mixListTable" layoutY="52.0" prefHeight="917.0" prefWidth="569.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
                                     <columns>
-                                        <TableColumn fx:id="TabaccosColumn" prefWidth="75.0" text="Табаки в миксе" />
-                                        <TableColumn fx:id="FlavorsColumn" prefWidth="75.0" text="Вкусы" />
+                                        <TableColumn fx:id="tabaccosColumn" prefWidth="75.0" text="Табаки в миксе" />
+                                        <TableColumn fx:id="flavorsColumn" prefWidth="75.0" text="Вкусы" />
                                     </columns>
                                     <columnResizePolicy>
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -60,7 +60,7 @@
                                 </Label>
                                 <ButtonBar layoutX="672.0" layoutY="803.0" prefHeight="152.0" prefWidth="642.0">
                                     <buttons>
-                                        <Button fx:id="BackButton" mnemonicParsing="false" prefHeight="68.0" prefWidth="126.0" text="Назад">
+                                        <Button fx:id="backButton" mnemonicParsing="false" prefHeight="68.0" prefWidth="126.0" text="Назад">
                                             <font>
                                                 <Font name="Bookman Old Style" size="20.0" />
                                             </font>
@@ -99,22 +99,22 @@
                                                 <Font name="Bookman Old Style" size="29.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="TabaccosValue" prefHeight="226.0" prefWidth="1037.0" text=" Табаки" GridPane.columnIndex="1">
+                                        <Label fx:id="tabaccosValue" prefHeight="226.0" prefWidth="1037.0" text=" Табаки" GridPane.columnIndex="1">
                                             <font>
                                                 <Font name="Bookman Old Style" size="29.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="FlavorsValue" prefHeight="219.0" prefWidth="1037.0" text=" Вкусы" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                        <Label fx:id="flavorsValue" prefHeight="219.0" prefWidth="1037.0" text=" Вкусы" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                             <font>
                                                 <Font name="Bookman Old Style" size="29.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="TastesValue" prefHeight="296.0" prefWidth="1037.0" text=" Вкусовые качества" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                        <Label fx:id="tastesValue" prefHeight="296.0" prefWidth="1037.0" text=" Вкусовые качества" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                             <font>
                                                 <Font name="Bookman Old Style" size="29.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="HardnessValue" prefHeight="95.0" prefWidth="1068.0" text=" Крепость" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                        <Label fx:id="hardnessValue" prefHeight="95.0" prefWidth="1068.0" text=" Крепость" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                             <font>
                                                 <Font name="Bookman Old Style" size="29.0" />
                                             </font>

@@ -68,23 +68,23 @@ public class MixEditController implements Controller {
         String errorMessage = "";
 
         if (tabaccosField.getText() == null || tabaccosField.getText().length() == 0) {
-            errorMessage += "No valid tabaccos!\n";
+            errorMessage += "Поле 'Табаки' не должно быть пустым!\n";
         }
         if (flavorsField.getText() == null || flavorsField.getText().length() == 0) {
-            errorMessage += "No valid flavors!\n";
+            errorMessage += "Поле 'Вкусы' не должно быть пустым!\n";
         }
         if (tastesField.getText() == null || tastesField.getText().length() == 0) {
-            errorMessage += "No valid tastes!\n";
+            errorMessage += "Поле 'Вкусовые качества' не должно быть пустым!\n";
         }
 
         if (hardnessField.getText() == null || hardnessField.getText().length() == 0) {
-            errorMessage += "No valid hardness!\n";
+            errorMessage += "Поле 'Крепость' не должно быть пустым!\n";
         } else {
             // пытаемся преобразовать почтовый код в int.
             try {
                 Integer.parseInt(hardnessField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += "No valid hardness (must be an integer)!\n";
+                errorMessage += "Крепость должна быть числовым значением!\n";
             }
         }
         if (errorMessage.length() == 0) {
@@ -93,8 +93,8 @@ public class MixEditController implements Controller {
             // Показываем сообщение об ошибке.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(dialogStage);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
+            alert.setTitle("Некорректные значения");
+            alert.setHeaderText("Пожалуйста, введите корректные значения в текстовые поля");
             alert.setContentText(errorMessage);
 
             alert.showAndWait();

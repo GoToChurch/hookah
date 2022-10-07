@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 public class TabaccoController implements Controller {
 
     @FXML
-    private Button TabaccoListButton;
+    private Button tabaccoListButton;
 
     @FXML
-    private Button TabaccoButton;
+    private Button tabaccoButton;
 
     @FXML
-    private Button BackButton;
+    private Button backButton;
 
     private FxMain fxMain;
 
     @FXML
     private void initialize() {
         fxMain = Context.getInstance().getContext().getBean("fxMain", FxMain.class);
-        TabaccoListButton.setOnAction(event -> fxMain.openNewScene(TabaccoListButton, "/view/tabacco_list.fxml"));
-        TabaccoButton.setOnAction(event -> fxMain.openNewScene(TabaccoButton, "/view/tabacco_detail.fxml"));
-        BackButton.setOnAction(event -> fxMain.openNewScene(BackButton, "/view/main.fxml"));
+        tabaccoListButton.setOnAction(event -> fxMain.openNewScene(tabaccoListButton, "/view/tabacco_list.fxml"));
+        tabaccoButton.setOnAction(event -> fxMain.openNewScene(tabaccoButton, "/view/tabacco_detail.fxml"));
+        backButton.setOnAction(event -> fxMain.openNewScene(backButton, "/view/main.fxml"));
     }
 }

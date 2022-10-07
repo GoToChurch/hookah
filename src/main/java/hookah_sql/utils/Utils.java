@@ -2,18 +2,20 @@ package hookah_sql.utils;
 
 import hookah_sql.config.Context;
 import hookah_sql.tabacco.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
 
     public static Tabacco convertStringInTobacco(String s) {
-        switch (s) {
-            case "Black Burn" -> {
+        switch (capitalize(s)) {
+            case "Blackburn" -> {
                 return Context.getInstance().getContext().getBean("Blackburn", Blackburn.class);
             }
             case "Darkside" -> {
                 return Context.getInstance().getContext().getBean("Darkside", Darkside.class);
             }
-            case "Must Have" -> {
+            case "MustHave" -> {
                 return Context.getInstance().getContext().getBean("Musthave", Musthave.class);
             }
             case "Satyr" -> {
@@ -26,7 +28,7 @@ public class Utils {
                 return Context.getInstance().getContext().getBean("Element", Element.class);
             }
             case "Duft" -> {
-                return Context.getInstance().getContext().getBean("Duft", Element.class);
+                return Context.getInstance().getContext().getBean("Duft", Duft.class);
             }
             default -> {
                 throw new IllegalArgumentException();
@@ -34,31 +36,28 @@ public class Utils {
         }
     }
 
-    public static TabaccoEnum getTobaccoEnumByName(String name) {
-        switch (name.toLowerCase().replace(" ", "")) {
-            case "all" -> {
-                return TabaccoEnum.ALL;
+    public static String getStringByTabaccoEnum(TabaccoEnum tabaccoEnum) {
+        switch (tabaccoEnum) {
+            case BLACKBURN -> {
+                return "Blackburn";
             }
-            case "blackburn" -> {
-                return TabaccoEnum.BLACKBURN;
+            case DARKSIDE -> {
+                return "Darkside";
             }
-            case "darkside" -> {
-                return TabaccoEnum.DARKSIDE;
+            case DUFT -> {
+                return "Duft";
             }
-            case "musthave" -> {
-                return TabaccoEnum.MUSTHAVE;
+            case ELEMENT -> {
+                return "Element";
             }
-            case "satyr" -> {
-                return TabaccoEnum.SATYR;
+            case MUSTHAVE -> {
+                return "Musthave";
             }
-            case "tangiers" -> {
-                return TabaccoEnum.TANGIERS;
+            case SATYR -> {
+                return "Satyr";
             }
-            case "element" -> {
-                return TabaccoEnum.ELEMENT;
-            }
-            case "duft" -> {
-                return TabaccoEnum.DUFT;
+            case TANGIERS -> {
+                return "Tangiers";
             }
             default -> {
                 throw new IllegalArgumentException();
@@ -66,36 +65,51 @@ public class Utils {
         }
     }
 
-    public static Tabacco castTabaccoInSpecificClass(String clazz) {
-        Tabacco tabacco = null;
+    public static String capitalize(String s) {
+        String result = "";
 
-        switch (clazz.toLowerCase().replace(" ", "")) {
-            case "blackburn" -> {
-                tabacco = new Blackburn();
-            }
-            case "darkside" -> {
-                tabacco = new Darkside();
-            }
-            case "musthave" -> {
-                tabacco = new Musthave();
-            }
-            case "satyr" -> {
-                tabacco = new Satyr();
-            }
-            case "tangiers" -> {
-                tabacco = new Tangiers();
-            }
-            case "element" -> {
-                tabacco = new Element();
-            }
-            case "duft" -> {
-                tabacco = new Duft();
-            }
-            default -> {
-                throw new IllegalArgumentException();
-            }
+        if (!s.equals("")) {
+            result = s.toLowerCase().replaceFirst(String.valueOf(s.charAt(0)), String.valueOf(s.charAt(0)).toUpperCase());
         }
 
-        return tabacco;
+        return result;
+    }
+
+    public static List<String> getAllTastes() {
+        return new ArrayList<>() {{
+            add("Алкогольный");
+            add("Десертный");
+            add("Жареный");
+            add("Кислый");
+            add("Мясной");
+            add("Овощной");
+            add("Ореховый");
+            add("Пряный");
+            add("Свежий");
+            add("Сладкий");
+            add("Сливочный");
+            add("Табачный");
+            add("Терпкий");
+            add("Травянистый");
+            add("Тропический");
+            add("Фруктовый");
+            add("Цветочный");
+            add("Цитрусовый");
+            add("Чайный");
+            add("Экзотический");
+            add("Ягодный");
+        }};
+    }
+
+    public static List<String> getAllTabaccos() {
+        return new ArrayList<>() {{
+            add("Blackburn");
+            add("Darkside");
+            add("Duft");
+            add("Element");
+            add("Musthave");
+            add("Satyr");
+            add("Tangiers");
+        }};
     }
 }

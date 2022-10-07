@@ -16,12 +16,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="MixButton" layoutX="688.0" layoutY="247.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Миксы" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="mixButton" layoutX="688.0" layoutY="247.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Миксы" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="53.0" />
          </font>
       </Button>
-      <Button fx:id="TabaccoButton" layoutX="688.0" layoutY="660.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Табаки" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="tabaccoButton" layoutX="688.0" layoutY="660.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Табаки" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="53.0" />
          </font>

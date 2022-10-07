@@ -2,6 +2,8 @@ package hookah_sql.controller;
 
 import hookah_sql.FxMain;
 import hookah_sql.dao.TabaccoDAO;
+import hookah_sql.tabacco.Tabacco;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,7 +18,7 @@ public class TabaccoDetailController extends TabaccoListController implements Co
     @FXML
     void getTabaccoFromSearchField(ActionEvent event) {
         if (isInputValid()) {
-            refresh(TabaccoDAO.getTobacco(searchField.getText()));
+            refresh(searchField.getText());
         }
     }
 
@@ -29,7 +31,7 @@ public class TabaccoDetailController extends TabaccoListController implements Co
         String errorMessage = "";
 
         if (searchField.getText() == null || searchField.getText().length() == 0) {
-            errorMessage += "Search field must be not null!\n";
+            errorMessage += "Поисковый запрос не может быть пустым!!\n";
         }
         if (errorMessage.length() == 0) {
             return true;
@@ -37,14 +39,21 @@ public class TabaccoDetailController extends TabaccoListController implements Co
             // Показываем сообщение об ошибке.
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(FxMain.getPrimaryStage());
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
+            alert.setTitle("Некорректные значения");
+            alert.setHeaderText("Пожалуйста, введите корректное значание в поисковое поле");
             alert.setContentText(errorMessage);
 
             alert.showAndWait();
 
             return false;
         }
+    }
+
+    private void refresh(String name) {
+        tabaccoListTable.refresh();
+
+        ObservableList<Tabacco> listToAdd = TabaccoDAO.getTabacco(name);
+        tabaccoListTable.setItems(listToAdd);
     }
 }
 

@@ -20,7 +20,6 @@ public class TabaccoFactory {
             }
             case BLACKBURN -> {
                 return new Blackburn();
-                //return Context.getInstance().getContext().getBean("BlackBurn", BlackBurn.class);
             }
             case DUFT -> {
                 return new Duft();

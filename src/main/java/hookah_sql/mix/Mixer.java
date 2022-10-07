@@ -20,7 +20,7 @@ public class Mixer {
 
     private Mix mix;
 
-    private List<Tabacco> tabaccoList;
+    private final List<Tabacco> tabaccoList;
 
     public Mixer() {
         this.tabaccoList = TabaccoDAO.getTabaccoList(TabaccoEnum.ALL);
@@ -210,7 +210,7 @@ public class Mixer {
     }
 
     private boolean isAlreadyInMix(Tabacco tabacco) {
-        return mix.getFlavors().toLowerCase().contains(tabacco.getFlavor().toLowerCase());
+        return mix.getFlavors().contains(tabacco.getFlavor());
     }
 
     private boolean isSameTabacco(Tabacco tabacco) {

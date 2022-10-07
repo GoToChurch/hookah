@@ -1,5 +1,6 @@
 package hookah_sql;
 
+import hookah_sql.controller.DeleteConfirmController;
 import hookah_sql.controller.MixEditController;
 import hookah_sql.controller.TabaccoEditController;
 import hookah_sql.mix.Mix;
@@ -26,10 +27,10 @@ public class FxMain extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         logger.info("Starting the app");
 
-        this.primaryStage = primaryStage;
+        FxMain.primaryStage = primaryStage;
         primaryStage.setTitle("Hookah");
 
         initRootLayout();
@@ -113,6 +114,27 @@ public class FxMain extends Application {
         }
     }
 
+    public boolean openDeleteConfirmDialog() {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/delete_confirm.fxml"));
+
+        try {
+            fxmlLoader.load();
+            Parent root = fxmlLoader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            DeleteConfirmController controller = fxmlLoader.getController();
+            controller.setDialogStage(stage);
+
+            stage.showAndWait();
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.error("An error ocussed while opening tabacco edit dialig");
+            return false;
+        }
+    }
     public static Stage getPrimaryStage() {
         return primaryStage;
     }

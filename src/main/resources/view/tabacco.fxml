@@ -16,17 +16,17 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Button fx:id="TabaccoListButton" layoutX="687.0" layoutY="220.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить список табаков" textAlignment="CENTER" textFill="#be6060">
+        <Button fx:id="tabaccoListButton" layoutX="687.0" layoutY="220.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить список табаков" textAlignment="CENTER" textFill="#be6060">
             <font>
                 <Font name="Bookman Old Style" size="34.0" />
             </font>
         </Button>
-        <Button fx:id="TabaccoButton" layoutX="687.0" layoutY="682.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить конкретный табак" textAlignment="CENTER" textFill="#be6060">
+        <Button fx:id="tabaccoButton" layoutX="687.0" layoutY="682.0" mnemonicParsing="false" prefHeight="203.0" prefWidth="546.0" text="Получить конкретный табак" textAlignment="CENTER" textFill="#be6060">
             <font>
                 <Font name="Bookman Old Style" size="34.0" />
             </font>
         </Button>
-      <Button fx:id="BackButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="backButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="30.0" />
          </font>

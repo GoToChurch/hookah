@@ -10,26 +10,26 @@ import org.springframework.stereotype.Component;
 public class MixController implements Controller {
 
     @FXML
-    private Button RandomMixButton;
+    private Button randomMixButton;
 
     @FXML
-    private Button MixListButton;
+    private Button mixListButton;
 
     @FXML
-    private Button MixButton;
+    private Button mixButton;
 
     @FXML
-    private Button BackButton;
+    private Button backButton;
 
     private FxMain fxMain;
 
     @FXML
     private void initialize() {
         fxMain = Context.getInstance().getContext().getBean("fxMain", FxMain.class);
-        RandomMixButton.setOnAction(event -> fxMain.openNewScene(RandomMixButton, "/view/random_mix.fxml"));
-        MixListButton.setOnAction(event -> fxMain.openNewScene(MixListButton, "/view/mix_list.fxml"));
-        MixButton.setOnAction(event -> fxMain.openNewScene(MixButton, "/view/mix_detail.fxml"));
-        BackButton.setOnAction(event -> fxMain.openNewScene(BackButton, "/view/main.fxml"));
+        randomMixButton.setOnAction(event -> fxMain.openNewScene(randomMixButton, "/view/random_mix.fxml"));
+        mixListButton.setOnAction(event -> fxMain.openNewScene(mixListButton, "/view/mix_list.fxml"));
+        mixButton.setOnAction(event -> fxMain.openNewScene(mixButton, "/view/mix_detail.fxml"));
+        backButton.setOnAction(event -> fxMain.openNewScene(backButton, "/view/main.fxml"));
     }
 }
 

@@ -25,19 +25,19 @@
                 <Font name="Bookman Old Style" size="30.0" />
             </font>
         </Button>
-      <TextField fx:id="TabaccoCountTextField" layoutX="34.0" layoutY="162.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите количество табаков">
+      <TextField fx:id="tabaccoCountTextField" layoutX="34.0" layoutY="162.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите количество табаков">
          <font>
             <Font name="Bookman Old Style" size="15.0" />
          </font></TextField>
-      <TextField fx:id="HardnessTextField" layoutX="34.0" layoutY="348.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемую крепость (введите 0, если все равно)">
+      <TextField fx:id="hardnessTextField" layoutX="34.0" layoutY="348.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемую крепость от 3 до 10 (введите 0, если все равно)">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <TextField fx:id="TabaccosTextField" layoutX="34.0" layoutY="561.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые табаки (оставть пустым, если все равно)">
+      <TextField fx:id="tabaccosTextField" layoutX="34.0" layoutY="561.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые табаки (оставть пустым, если все равно)">
          <font>
             <Font name="Bookman Old Style" size="15.0" />
          </font></TextField>
-      <TextField fx:id="TastesTextField" layoutX="34.0" layoutY="777.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые вкусовые качества (оставтьте пустым если все равно)">
+      <TextField fx:id="tastesTextField" layoutX="34.0" layoutY="777.0" prefHeight="111.0" prefWidth="578.0" promptText="Введите желаемые вкусовые качества (оставтьте пустым если все равно)">
          <font>
             <Font name="Bookman Old Style" size="15.0" />
          </font></TextField>
@@ -46,15 +46,15 @@
             <Font name="Bookman Old Style" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="BackButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="backButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="30.0" />
          </font>
       </Button>
-      <GridPane layoutX="776.0" layoutY="162.0" prefHeight="583.0" prefWidth="1117.0">
+      <GridPane layoutX="776.0" layoutY="162.0" prefHeight="583.0" prefWidth="792.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.666748046875" minWidth="10.0" prefWidth="172.6666259765625" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="961.0" minWidth="10.0" prefWidth="712.3333740234375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.666748046875" minWidth="10.0" prefWidth="258.6666259765625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="961.0" minWidth="10.0" prefWidth="533.3333740234375" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -83,22 +83,22 @@
                   <Font name="Bookman Old Style" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="randomMixTabaccosValue" prefHeight="58.0" prefWidth="526.0" text="Табаки" GridPane.columnIndex="1">
+            <Label fx:id="randomMixTabaccosValue" prefHeight="141.0" prefWidth="534.0" text="Табаки" wrapText="true" GridPane.columnIndex="1">
                <font>
-                  <Font name="Bookman Old Style" size="16.0" />
+                  <Font name="Bookman Old Style" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="randomMixFlavorsValue" prefHeight="58.0" prefWidth="526.0" text="Вкусы" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="randomMixFlavorsValue" prefHeight="143.0" prefWidth="526.0" text="Вкусы" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font name="Bookman Old Style" size="16.0" />
+                  <Font name="Bookman Old Style" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="randomMixTastesValue" prefHeight="58.0" prefWidth="526.0" text="Вкусовые качества" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="randomMixTastesValue" prefHeight="143.0" prefWidth="526.0" text="Вкусовые качества" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
-                  <Font name="Bookman Old Style" size="16.0" />
+                  <Font name="Bookman Old Style" size="25.0" />
                </font>
             </Label>
-            <Label fx:id="randomMixHardnessValue" prefHeight="58.0" prefWidth="526.0" text="Крепость" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="randomMixHardnessValue" prefHeight="145.0" prefWidth="526.0" text="Крепость" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Bookman Old Style" size="25.0" />
                </font>

@@ -1,19 +1,17 @@
 package hookah_sql.tabacco;
 
-import hookah_sql.mix.Mix;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.Objects;
 
 @MappedSuperclass
 @Component
@@ -45,6 +43,14 @@ public class Tabacco implements Serializable {
     @Column(name = "hardness", nullable = false)
     protected int hardness;
 
+    @NotNull
+    @Column(name = "heatResistance", nullable = false)
+    protected String heatResistance;
+
+    @NotNull
+    @Column(name = "smokingDuration", nullable = false)
+    protected int smokingDuration;
+
     @Transient
     private StringProperty tabaccoProperty;
 
@@ -59,6 +65,12 @@ public class Tabacco implements Serializable {
 
     @Transient
     private StringProperty tasteProperty;
+
+    @Transient
+    private StringProperty heatResistanceProperty;
+
+    @Transient
+    private IntegerProperty smokingDurationProperty;
 
     @Transient
     private IntegerProperty hardnessProperty;
@@ -121,6 +133,22 @@ public class Tabacco implements Serializable {
         this.id = id;
     }
 
+    public String getHeatResistance() {
+        return heatResistance;
+    }
+
+    public void setHeatResistance(String heatResistance) {
+        this.heatResistance = heatResistance;
+    }
+
+    public int getSmokingDuration() {
+        return smokingDuration;
+    }
+
+    public void setSmokingDuration(int smokingDuration) {
+        this.smokingDuration = smokingDuration;
+    }
+
     public String getNameProperty() {
         return nameProperty.get();
     }
@@ -167,6 +195,22 @@ public class Tabacco implements Serializable {
 
     public StringProperty tabaccoProperty() {
         return tabaccoProperty;
+    }
+
+    public String getHeatResistanceProperty() {
+        return heatResistanceProperty.get();
+    }
+
+    public StringProperty heatResistanceProperty() {
+        return heatResistanceProperty;
+    }
+
+    public Integer getSmokingDurationProperty() {
+        return smokingDurationProperty.get();
+    }
+
+    public IntegerProperty smokingDurationProperty() {
+        return smokingDurationProperty;
     }
 
     public String getTabaccoName() {

@@ -2,7 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.TabaccoListController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.TabaccoListController">
     <children>
         <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;">
             <children>
@@ -30,7 +33,7 @@
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="970.0" prefWidth="280.0">
                             <children>
-                                <TableView fx:id="tabaccoListTable" layoutY="109.0" prefHeight="861.0" prefWidth="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
+                                <TableView fx:id="tabaccoListTable" layoutY="79.0" prefHeight="891.0" prefWidth="624.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0">
                                     <columns>
                                         <TableColumn fx:id="tabaccoColumn" prefWidth="158.33328247070312" text="Табак" />
                                         <TableColumn fx:id="nameColumn" prefWidth="256.66668701171875" text="Название" />
@@ -40,44 +43,83 @@
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
                                 </TableView>
-                        <Button fx:id="allButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Все табаки">
+                        <GridPane layoutX="14.0" layoutY="45.0" prefHeight="30.0" prefWidth="266.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.33334350585938" minWidth="10.0" prefWidth="101.66665649414062" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.33331298828125" minWidth="10.0" prefWidth="164.33334350585938" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="16.0" prefWidth="121.0" text="Выбрано табаков:" />
+                              <Label fx:id="tabaccoCount" text="Количество" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Bookman Old Style" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <MenuBar layoutX="14.0" layoutY="11.0" prefHeight="25.0" prefWidth="101.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="Фильтрация">
+                              <items>
+                                    <Menu fx:id="tabaccoFilterMenu" mnemonicParsing="false" text="По табакам">
+                                       <items>
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="BlackBurn" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Darkside" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Duft" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Element" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="MustHave" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Satyr" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Tangiers" />
+                                       </items>
+                                    </Menu>
+                                    <Menu fx:id="hardnessFilterMenu" mnemonicParsing="false" text="По крепости">
+                                       <items>
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="3" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="4" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="5" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="6" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="7" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="8" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="9" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="10" />
+                                       </items>
+                                    </Menu>
+                                    <Menu fx:id="tasteFilterMenu" mnemonicParsing="false" text="По вкусам">
+                                      <items>
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Алкогольный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Десертный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Жареный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Кислый" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Мясной" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Овощной" />
+                                          <CheckMenuItem mnemonicParsing="false" text="Ореховый" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Пряный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Свежий" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Сладкий" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Сливочный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Табачный" />
+                                          <CheckMenuItem mnemonicParsing="false" text="Терпкий" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Травянистый" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Тропический" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Фруктовый" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Цветочный" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Цитрусовый" />
+                                          <CheckMenuItem mnemonicParsing="false" text="Чайный" />
+                                          <CheckMenuItem mnemonicParsing="false" text="Экзотический" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Ягодный" />
+                                      </items>
+                                    </Menu>
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                        <Button fx:id="resetButton" layoutX="129.0" layoutY="11.0" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="101.0" text="Сбросить" />
+                        <Button fx:id="clearButton" layoutX="250.0" layoutY="11.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="101.0" text="Очистить">
                            <font>
-                              <Font name="Bookman Old Style" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="mustHaveButton" layoutX="135.0" layoutY="58.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="MustHave">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="blackBurnButton" layoutX="135.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="BlackBurn">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="satyrButton" layoutX="264.0" layoutY="58.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Satyr">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="darksideButton" layoutX="264.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Darkside">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="tangiersButton" layoutX="387.0" layoutY="58.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Tangiers">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="duftButton" layoutX="387.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Duft">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="elementButton" layoutX="507.0" layoutY="14.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="96.0" text="Element">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
+                              <Font name="Bookman Old Style" size="12.0" />
                            </font>
                         </Button>
                             </children>
@@ -113,10 +155,10 @@
                               </Button>
                                     </buttons>
                                 </ButtonBar>
-                        <GridPane layoutX="14.0" layoutY="18.0" prefHeight="797.0" prefWidth="1323.0">
+                        <GridPane layoutX="14.0" layoutY="30.0" prefHeight="797.0" prefWidth="1268.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.666748046875" minWidth="10.0" prefWidth="286.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1154.333251953125" minWidth="10.0" prefWidth="1037.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.666748046875" minWidth="10.0" prefWidth="302.666748046875" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="1154.333251953125" minWidth="10.0" prefWidth="965.333251953125" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="262.3333435058594" minHeight="10.0" prefHeight="103.33334350585938" vgrow="SOMETIMES" />
@@ -147,22 +189,22 @@
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nameValue" prefHeight="163.0" prefWidth="988.0" text="Название" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="nameValue" prefHeight="163.0" prefWidth="988.0" text="Название" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="flavorValue" prefHeight="130.0" prefWidth="992.0" text=" Вкус" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="flavorValue" prefHeight="130.0" prefWidth="992.0" text=" Вкус" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="tastesValue" prefHeight="172.0" prefWidth="991.0" text=" Вкусовые качества" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="tastesValue" prefHeight="172.0" prefWidth="989.0" text=" Вкусовые качества" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="hardnessValue" prefHeight="80.0" prefWidth="989.0" text=" Крепость" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <Label fx:id="hardnessValue" prefHeight="80.0" prefWidth="989.0" text=" Крепость" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
@@ -172,7 +214,7 @@
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="descriptionValue" prefHeight="162.0" prefWidth="988.0" text="Описание" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="descriptionValue" prefHeight="162.0" prefWidth="964.0" stylesheets="@style.css" text="Описание" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
@@ -182,7 +224,7 @@
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="tabaccoValue" prefHeight="83.0" prefWidth="987.0" text="Табак" GridPane.columnIndex="1">
+                              <Label fx:id="tabaccoValue" prefHeight="83.0" prefWidth="987.0" text="Табак" wrapText="true" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="Bookman Old Style" size="29.0" />
                                  </font>
