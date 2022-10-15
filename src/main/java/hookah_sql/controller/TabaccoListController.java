@@ -30,7 +30,7 @@ public class TabaccoListController implements Controller {
     private TableColumn<Tabacco, String> tabaccoColumn;
 
     @FXML
-    private Button backButton;
+    protected Button backButton;
 
     @FXML
     private Label tabaccoValue;
@@ -51,6 +51,12 @@ public class TabaccoListController implements Controller {
     private Label descriptionValue;
 
     @FXML
+    private Label heatResistanceValue;
+
+    @FXML
+    private Label smokingDurationValue;
+
+    @FXML
     private Menu tabaccoFilterMenu;
 
     @FXML
@@ -60,18 +66,12 @@ public class TabaccoListController implements Controller {
     private Menu tasteFilterMenu;
 
     @FXML
-    private Label tabaccoCount;
-
-    @FXML
-    private Button resetButton;
-
-    @FXML
-    private Button clearButton;
+    protected Label tabaccoCount;
 
     @FXML
     private TextField tabaccoAddNameField;
 
-    private FxMain fxMain;
+    protected FxMain fxMain;
 
     @FXML
     private void initialize() {
@@ -94,7 +94,7 @@ public class TabaccoListController implements Controller {
         );
     }
 
-    private void prepareFilterMenu() {
+    protected void prepareFilterMenu() {
         for (MenuItem menuItem : tabaccoFilterMenu.getItems()) {
             menuItem.setOnAction(event -> refreshFromFilter((CheckMenuItem) menuItem));
         }
@@ -108,7 +108,7 @@ public class TabaccoListController implements Controller {
         }
     }
 
-    protected void showTabaccoDetails(Tabacco tabacco) {
+    private void showTabaccoDetails(Tabacco tabacco) {
         if (tabacco != null) {
             tabaccoValue.setText(tabacco.getTabaccoProperty());
             nameValue.setText(tabacco.getNameProperty());
@@ -116,6 +116,8 @@ public class TabaccoListController implements Controller {
             descriptionValue.setText(tabacco.getDescriptionProperty());
             tastesValue.setText(tabacco.getTasteProperty());
             hardnessValue.setText(String.valueOf(tabacco.getHardnessProperty()));
+            heatResistanceValue.setText(tabacco.getHeatResistanceProperty());
+            smokingDurationValue.setText(String.valueOf(tabacco.getSmokingDurationProperty()) + " минут");
         } else {
             tabaccoValue.setText("");
             nameValue.setText("");
@@ -123,11 +125,13 @@ public class TabaccoListController implements Controller {
             descriptionValue.setText("");
             tastesValue.setText("");
             hardnessValue.setText("");
+            heatResistanceValue.setText("");
+            smokingDurationValue.setText("");
         }
     }
 
     @FXML
-    private void refresh() {
+    protected void refresh() {
         tabaccoListTable.refresh();
 
         ObservableList<Tabacco> listToAdd = TabaccoDAO.getTabaccoList(TabaccoEnum.ALL);
@@ -164,7 +168,7 @@ public class TabaccoListController implements Controller {
         tabaccoCount.setText(String.valueOf(listToAdd.size()));
     }
 
-    private void cleanUpCheckBoxes(ObservableList<Tabacco> list) {
+    protected void cleanUpCheckBoxes(ObservableList<Tabacco> list) {
         Set<String> allTabaccosInTable = new HashSet<>();
         Set<String> allTastesInTable = new HashSet<>();
         Set<Integer> allHardnessesInTable = new HashSet<>();
@@ -288,7 +292,8 @@ public class TabaccoListController implements Controller {
 
     @FXML
     private void handleNewTabacco() {
-        if (!tabaccoAddNameField.getText().equals("")) {
+        if (!tabaccoAddNameField.getText().equals("") &&
+                Utils.getAllTabaccos().contains(Utils.capitalize(tabaccoAddNameField.getText()))) {
             Tabacco tempTabacco = Utils.convertStringInTobacco(tabaccoAddNameField.getText());
             boolean okClicked = fxMain.openTabaccoEditDialog(tempTabacco);
             if (okClicked) {

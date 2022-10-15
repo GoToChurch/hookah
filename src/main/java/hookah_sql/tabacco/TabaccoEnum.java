@@ -38,7 +38,7 @@ public enum TabaccoEnum {
                 return DUFT;
             }
             default -> {
-                throw new IllegalArgumentException();
+                return null;
             }
         }
     }

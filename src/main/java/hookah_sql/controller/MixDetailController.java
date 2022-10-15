@@ -29,7 +29,7 @@ public class MixDetailController extends MixListController implements Controller
     private void refresh(String name) {
         mixListTable.refresh();
 
-        ObservableList<Mix> listToAdd = MixDAO.getMix(name);
+        ObservableList<Mix> listToAdd = MixDAO.getMixBySearchQuery(name);
         mixListTable.setItems(listToAdd);
     }
 

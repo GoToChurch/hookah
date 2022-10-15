@@ -16,7 +16,7 @@ public class TabaccoDetailController extends TabaccoListController implements Co
     private TextField searchField;
 
     @FXML
-    void getTabaccoFromSearchField(ActionEvent event) {
+    private void getTabaccoFromSearchField(ActionEvent event) {
         if (isInputValid()) {
             refresh(searchField.getText());
         }
@@ -52,7 +52,7 @@ public class TabaccoDetailController extends TabaccoListController implements Co
     private void refresh(String name) {
         tabaccoListTable.refresh();
 
-        ObservableList<Tabacco> listToAdd = TabaccoDAO.getTabacco(name);
+        ObservableList<Tabacco> listToAdd = TabaccoDAO.getTabaccoBySearchQuery(name);
         tabaccoListTable.setItems(listToAdd);
     }
 }

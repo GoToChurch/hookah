@@ -22,6 +22,8 @@ public class MixDAO {
     private static final Logger logger = LoggerFactory.getLogger(MixDAO.class);
 
     public static void add(Mix mix) {
+        logger.info("Adding new mix: {}", mix.getNames());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -36,6 +38,8 @@ public class MixDAO {
     };
 
     public static void update(Mix mix) {
+        logger.info("Updating mix: {}", mix.getNames());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -50,6 +54,8 @@ public class MixDAO {
     };
 
     public static void delete(Mix mix) {
+        logger.info("Deleting mix: {}", mix.getNames());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -63,8 +69,8 @@ public class MixDAO {
         }
     };
 
-    public static ObservableList<Mix> getMix(String name) {
-        logger.info("User wants to get particular mix");
+    public static ObservableList<Mix> getMixBySearchQuery(String query) {
+        logger.info("User wants to get mixes by search query: {}", query);
 
         List<Mix> mixes = new ArrayList<>();
 
@@ -72,23 +78,23 @@ public class MixDAO {
 
         try(session) {
             Criteria criteria = session.createCriteria(Mix.class);
-            criteria.add(Restrictions.like("names", "%" + name + "%"));
+            criteria.add(Restrictions.like("names", "%" + query + "%"));
             mixes.addAll(criteria.list());
 
             criteria = session.createCriteria(Mix.class);
-            criteria.add(Restrictions.like("flavors", "%" + name + "%"));
+            criteria.add(Restrictions.like("flavors", "%" + query + "%"));
             mixes.addAll(criteria.list());
 
             return getObservationListToReturn(mixes);
         } catch (Exception e) {
-            logger.error("An error occured when connecting to mix data base");
+            logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
 
             return null;
         }
     }
 
     public static ObservableList<Mix> getMixList() {
-        logger.info("User chose mix show operation");
+        logger.info("Showing mix list");
 
         Session session = HibernateUtils.getSession();
 
@@ -97,7 +103,7 @@ public class MixDAO {
 
             return getObservationListToReturn(criteria.list());
         } catch (Exception e) {
-            logger.error("An error occured when connecting to mix data base");
+            logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
 
             return null;
         }
@@ -106,7 +112,7 @@ public class MixDAO {
     public static ObservableList<Mix> getMixList(
             List<String> tabaccosNames, List<String> unchosenTastes, List<Integer> hardnesses
     ) {
-        logger.info("User chose mix show operation");
+        logger.info("Showing mix list");
 
         List<Mix> mixes = fillListFromDataBase(tabaccosNames, hardnesses);
 
@@ -116,7 +122,7 @@ public class MixDAO {
     }
 
     public static ObservableList<Mix> getMixList(CheckMenuItem menuItem, ObservableList<Mix> items) {
-        logger.info("User chose mix show operation");
+        logger.info("Showing mix list");
 
         List<Mix> mixes;
 
@@ -143,7 +149,7 @@ public class MixDAO {
                 criteria.add(Restrictions.like("names", "%" + tabacco.getTabaccoName() + "%"));
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with mix data base");
+                logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
 
                 return null;
             }
@@ -174,7 +180,7 @@ public class MixDAO {
                 criteria.add(Restrictions.eq("hardness", wantedHardness));
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with mix data base");
+                logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
             }
         }
 
@@ -195,7 +201,7 @@ public class MixDAO {
                 criteria.add(Restrictions.like("taste", "%" + wantedTaste + "%"));
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with mix data base");
+                logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
             }
         } else {
             items.removeIf(mixToDelete -> Arrays.asList(mixToDelete.getTaste().split(", ")).contains(wantedTaste));
@@ -212,18 +218,17 @@ public class MixDAO {
             Criteria criteria = session.createCriteria(Mix.class);
             if (hardnesses.size() > 0) {
                 criteria.add(Restrictions.in("hardness", hardnesses));
+                mixes.addAll(criteria.list());
             }
             if (tabaccosNames.size() > 0) {
-                for (String tabaccoName : tabaccosNames) {
-                    criteria.add(Restrictions.like("name", "%" + tabaccoName + "%"));
-                }
+                mixes.removeIf(mixToDelete -> !tabaccosNames.containsAll(mixToDelete.getAllTabaccosInMix()));
             }
 
-            mixes.addAll(criteria.list());
+
 
             return mixes;
         } catch (Exception e) {
-            logger.error("An error occured while connecting with mix data base");
+            logger.error("An error occured while connecting with mix data base: {}", e.getMessage());
 
             return null;
         }

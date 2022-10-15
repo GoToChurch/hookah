@@ -51,6 +51,9 @@ public class MixListController implements Controller {
     @FXML
     private Button backButton;
 
+    @FXML
+    private Button addNewMixButton;
+
     protected FxMain fxMain;
 
     public MixListController() {
@@ -62,6 +65,8 @@ public class MixListController implements Controller {
         refresh();
         prepareFilterMenu();
         prepareTable();
+
+        addNewMixButton.setOnAction(event -> fxMain.openNewScene(backButton, "/view/mix_builder.fxml"));
     }
 
     protected void prepareTable() {

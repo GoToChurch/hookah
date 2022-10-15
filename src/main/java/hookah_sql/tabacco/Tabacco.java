@@ -224,6 +224,8 @@ public class Tabacco implements Serializable {
         descriptionProperty = new SimpleStringProperty(description);
         tasteProperty = new SimpleStringProperty(taste);
         hardnessProperty = new SimpleIntegerProperty(hardness);
+        heatResistanceProperty = new SimpleStringProperty(heatResistance);
+        smokingDurationProperty = new SimpleIntegerProperty(smokingDuration);
     }
 
     public boolean isEmpty() {

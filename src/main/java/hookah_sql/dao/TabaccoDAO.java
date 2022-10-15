@@ -24,6 +24,8 @@ public class TabaccoDAO {
     private static final Logger logger = LoggerFactory.getLogger(TabaccoDAO.class);
 
     public static void add(Tabacco tabacco) {
+        logger.info("Adding new tabacco: {}", tabacco.getName());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -38,6 +40,8 @@ public class TabaccoDAO {
     }
 
     public static void update(Tabacco tabacco) {
+        logger.info("Updating new tabacco: {}", tabacco.getName());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -52,6 +56,8 @@ public class TabaccoDAO {
     }
 
     public static void delete(Tabacco tabacco) {
+        logger.info("Deleting new tabacco: {}", tabacco.getName());
+
         Session session = HibernateUtils.getSession();
         Transaction tx = session.beginTransaction();
 
@@ -65,27 +71,31 @@ public class TabaccoDAO {
         }
     }
 
-    public static ObservableList<Tabacco> getTabacco(String name) {
+    public static ObservableList<Tabacco> getTabaccoBySearchQuery(String query) {
+        logger.info("User wants to get tabaccos by search query: {}", query);
+
         Session session = HibernateUtils.getSession();
         List<Tabacco> tabaccos = new ArrayList<>();
 
         try(session) {
             Criteria criteria = session.createCriteria(Tabacco.class);
-            criteria.add(Restrictions.like("name", "%" + name + "%"));
+            criteria.add(Restrictions.like("name", "%" + query + "%"));
             tabaccos.addAll(criteria.list());
 
             criteria = session.createCriteria(Tabacco.class);
-            criteria.add(Restrictions.like("flavor", "%" + name + "%"));
+            criteria.add(Restrictions.like("flavor", "%" + query + "%"));
             tabaccos.addAll(criteria.list());
 
             return getObservationListToReturn(tabaccos);
         } catch (Exception e) {
-            logger.error("An error occured while connecting with data base");
+            logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
             return null;
         }
     }
 
     public static ObservableList<Tabacco> getTabaccoList(TabaccoEnum tabaccoEnum) {
+        logger.info("Showing tabaccos list");
+
         List<Tabacco> tabaccos = fillListFromDataBase(tabaccoEnum);
 
         return getObservationListToReturn(tabaccos);
@@ -94,6 +104,8 @@ public class TabaccoDAO {
     public static ObservableList<Tabacco> getTabaccoList(
             List<String> tabaccosNames, List<String> unchosenTastes, List<Integer> hardnesses
     ) {
+        logger.info("Showing tabaccos list");
+
         List<Tabacco> tabaccos = fillListFromDataBase(tabaccosNames, hardnesses);
 
         getRidFromUnChosenTastesInList(Objects.requireNonNull(tabaccos), unchosenTastes);
@@ -103,6 +115,7 @@ public class TabaccoDAO {
 
     public static ObservableList<Tabacco> getTabaccoList(CheckMenuItem menuItem, ObservableList<Tabacco> items
     ) {
+        logger.info("Showing tabaccos list");
 
         List<Tabacco> tabaccos;
 
@@ -129,7 +142,7 @@ public class TabaccoDAO {
                 Criteria criteria = session.createCriteria(tabacco.getClass());
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with data base");
+                logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
             }
         } else {
             items.removeIf(tabaccoToDelete -> tabaccoToDelete.getTabaccoName().equals(tabacco.getTabaccoName()));
@@ -148,7 +161,7 @@ public class TabaccoDAO {
                 criteria.add(Restrictions.eq("hardness", wantedHardness));
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with data base");
+                logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
             }
         }
 
@@ -169,7 +182,7 @@ public class TabaccoDAO {
                 criteria.add(Restrictions.like("taste", "%" + wantedTaste + "%"));
                 items.addAll(criteria.list());
             } catch (Exception e) {
-                logger.error("An error occured while connecting with data base");
+                logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
             }
         } else {
             items.removeIf(tabaccoToDelete -> Arrays.asList(tabaccoToDelete.getTaste().split(", ")).contains(wantedTaste));
@@ -198,7 +211,7 @@ public class TabaccoDAO {
 
             return tabaccos;
         } catch (Exception e) {
-            logger.error("An error occured while connecting with data base");
+            logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
 
             return null;
         }
@@ -223,7 +236,7 @@ public class TabaccoDAO {
             }
             return tabaccos;
         } catch (Exception e) {
-            logger.error("An error occured while connecting with data base");
+            logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
 
             return null;
         }

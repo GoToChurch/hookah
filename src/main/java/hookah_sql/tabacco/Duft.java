@@ -12,6 +12,9 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Duft extends Tabacco {
     public Duft() {
+        this.hardness = 6;
+        this.smokingDuration = 60;
+        this.heatResistance = "Высокая";
     }
 
 }

@@ -77,6 +77,29 @@ public class Mix {
         hardness = 0;
     }
 
+    public void finilizeMix() {
+        names = names.substring(0, names.length() - 2);
+        flavors = flavors.substring(0, flavors.length() - 2);
+        taste = taste.substring(0, taste.length() - 2);
+    }
+
+    public void prepareProperties() {
+        namesProperty = new SimpleStringProperty(names);
+        flavorsProperty = new SimpleStringProperty(flavors);
+        tasteProperty = new SimpleStringProperty(taste);
+        hardnessProperty = new SimpleIntegerProperty(hardness);
+    }
+
+    public List<String> getAllTabaccosInMix() {
+        String[] tabaccos = names.split(", ");
+
+        for (int i = 0; i < tabaccos.length; i++) {
+            tabaccos[i] = tabaccos[i].replaceAll(".+\\(", "").replaceAll("\\)", "");
+        }
+
+        return Arrays.asList(tabaccos);
+    }
+
     public void countHardness() {
         hardness /= tabaccoList.size();
     }
@@ -155,30 +178,6 @@ public class Mix {
 
     public IntegerProperty hardnessProperty() {
         return hardnessProperty;
-    }
-
-
-    public void finilizeMix() {
-        names = names.substring(0, names.length() - 2);
-        flavors = flavors.substring(0, flavors.length() - 2);
-        taste = taste.substring(0, taste.length() - 2);
-    }
-
-    public void prepareProperties() {
-        namesProperty = new SimpleStringProperty(names);
-        flavorsProperty = new SimpleStringProperty(flavors);
-        tasteProperty = new SimpleStringProperty(taste);
-        hardnessProperty = new SimpleIntegerProperty(hardness);
-    }
-
-    public List<String> getAllTabaccosInMix() {
-        String[] tabaccos = names.split(", ");
-
-        for (int i = 0; i < tabaccos.length; i++) {
-            tabaccos[i] = tabaccos[i].replaceAll(".+\\(", "").replaceAll("\\)", "");
-        }
-
-        return Arrays.asList(tabaccos);
     }
 
     @Override

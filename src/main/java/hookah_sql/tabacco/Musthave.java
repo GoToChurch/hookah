@@ -11,8 +11,10 @@ import javax.persistence.Table;
 @Component("Musthave")
 @Scope("prototype")
 public class Musthave extends Tabacco {
-
     public Musthave() {
+        this.hardness = 5;
+        this.smokingDuration = 50;
+        this.heatResistance = "Высокая";
     }
 
 }

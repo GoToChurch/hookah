@@ -2,12 +2,18 @@ package hookah_sql.utils;
 
 import hookah_sql.config.Context;
 import hookah_sql.tabacco.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
+    private static final Logger logger = LoggerFactory.getLogger(Utils.class);
 
     public static Tabacco convertStringInTobacco(String s) {
+        logger.info("Converting string {} in tabacco entity", s);
+
         switch (capitalize(s)) {
             case "Blackburn" -> {
                 return Context.getInstance().getContext().getBean("Blackburn", Blackburn.class);
@@ -31,12 +37,16 @@ public class Utils {
                 return Context.getInstance().getContext().getBean("Duft", Duft.class);
             }
             default -> {
-                throw new IllegalArgumentException();
+                logger.error("Couldn't convert string {} in tabacco entity", s);
+
+                return null;
             }
         }
     }
 
     public static String getStringByTabaccoEnum(TabaccoEnum tabaccoEnum) {
+        logger.info("Getting string from tabaccoEnum: {}", tabaccoEnum);
+
         switch (tabaccoEnum) {
             case BLACKBURN -> {
                 return "Blackburn";
@@ -60,16 +70,18 @@ public class Utils {
                 return "Tangiers";
             }
             default -> {
-                throw new IllegalArgumentException();
+                logger.error("There is no {} tabacco in data base", tabaccoEnum);
+
+                return null;
             }
         }
     }
 
     public static String capitalize(String s) {
         String result = "";
-
         if (!s.equals("")) {
-            result = s.toLowerCase().replaceFirst(String.valueOf(s.charAt(0)), String.valueOf(s.charAt(0)).toUpperCase());
+            String lowerString = s.toLowerCase();
+            result = lowerString.replaceFirst(String.valueOf(lowerString.charAt(0)), String.valueOf(lowerString.charAt(0)).toUpperCase());
         }
 
         return result;

@@ -12,7 +12,8 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Element extends Tabacco {
     public Element() {
-
+        this.smokingDuration = 45;
+        this.heatResistance = "Средняя";
     }
 
 }

@@ -12,6 +12,9 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Blackburn extends Tabacco {
     public Blackburn() {
+        this.hardness = 6;
+        this.smokingDuration = 50;
+        this.heatResistance = "Средняя";
     }
 
 }

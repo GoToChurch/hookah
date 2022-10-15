@@ -39,7 +39,7 @@
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
                                 </TableView>
-                        <TextField fx:id="searchField" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="368.0" promptText="Введите названия табаков в миксе" AnchorPane.bottomAnchor="929.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="15.0">
+                        <TextField fx:id="searchField" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="368.0" promptText="Введите названия табаков или вкусов в миксе" AnchorPane.bottomAnchor="929.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="15.0">
                            <font>
                               <Font name="Bookman Old Style" size="14.0" />
                            </font>

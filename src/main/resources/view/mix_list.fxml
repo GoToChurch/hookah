@@ -64,11 +64,11 @@
                                  <items>
                                     <Menu fx:id="tabaccoFilterMenu" mnemonicParsing="false" text="По табакам">
                                        <items>
-                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="BlackBurn" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Blackburn" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Darkside" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Duft" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Element" />
-                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="MustHave" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Musthave" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Satyr" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Tangiers" />
                                        </items>
@@ -131,7 +131,7 @@
                         </Label>
                         <ButtonBar layoutX="697.0" layoutY="814.0" prefHeight="152.0" prefWidth="642.0">
                            <buttons>
-                              <Button fx:id="AddNewMixButton" mnemonicParsing="false" onAction="#handleNewMix" prefHeight="65.0" prefWidth="199.0" text="Добавить">
+                              <Button fx:id="addNewMixButton" mnemonicParsing="false" prefHeight="65.0" prefWidth="199.0" text="Добавить">
                                  <font>
                                     <Font name="Bookman Old Style" size="20.0" />
                                  </font>

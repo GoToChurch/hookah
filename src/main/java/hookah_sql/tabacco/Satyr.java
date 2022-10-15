@@ -12,6 +12,9 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Satyr extends Tabacco {
     public Satyr() {
+        this.hardness = 10;
+        this.smokingDuration = 60;
+        this.heatResistance = "Высокая";
     }
 
 }

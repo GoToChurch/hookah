@@ -12,5 +12,7 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Tangiers extends Tabacco {
     public Tangiers() {
+        this.smokingDuration = 60;
+        this.heatResistance = "Средняя";
     }
 }

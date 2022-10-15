@@ -1,7 +1,15 @@
 package hookah_sql.tabacco;
 
+import hookah_sql.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TabaccoFactory {
+    private static final Logger logger = LoggerFactory.getLogger(TabaccoFactory.class);
+
     public static Tabacco tabaccoFactory(TabaccoEnum tabaccoEnum) {
+        logger.info("Getting tabacco entity from tabaccoEnum: {}", tabaccoEnum);
+
         switch (tabaccoEnum) {
             case TANGIERS -> {
                 return new Tangiers();
@@ -25,6 +33,8 @@ public class TabaccoFactory {
                 return new Duft();
             }
             default -> {
+                logger.error("There is no {} tabacco in data base", tabaccoEnum);
+
                 return null;
             }
         }

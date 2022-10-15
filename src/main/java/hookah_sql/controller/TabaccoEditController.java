@@ -1,9 +1,11 @@
 package hookah_sql.controller;
 
 import hookah_sql.tabacco.Tabacco;
+import hookah_sql.utils.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,6 +29,12 @@ public class TabaccoEditController implements Controller {
     @FXML
     private TextField descriptionField;
 
+    @FXML
+    private Label heatResistanceValue;
+
+    @FXML
+    private Label smokingDurationValue;
+
     private Tabacco tabacco;
 
     private boolean okClicked = false;
@@ -41,10 +49,10 @@ public class TabaccoEditController implements Controller {
     @FXML
     void handleOk(ActionEvent event) {
         if (isInputValid()) {
-            tabacco.setName(nameField.getText());
-            tabacco.setFlavor(flavorField.getText());
-            tabacco.setDescription(descriptionField.getText());
-            tabacco.setTaste(tastesField.getText());
+            tabacco.setName(Utils.capitalize(nameField.getText()));
+            tabacco.setFlavor(Utils.capitalize(flavorField.getText()));
+            tabacco.setDescription(Utils.capitalize(descriptionField.getText()));
+            tabacco.setTaste(Utils.capitalize(tastesField.getText()));
             tabacco.setHardness(Integer.parseInt(hardnessField.getText()));
 
             okClicked = true;
@@ -65,6 +73,8 @@ public class TabaccoEditController implements Controller {
         descriptionField.setText(tabacco.getDescription());
         tastesField.setText(tabacco.getTaste());
         hardnessField.setText(String.valueOf(tabacco.getHardness()));
+        heatResistanceValue.setText(tabacco.getHeatResistance());
+        smokingDurationValue.setText(String.valueOf(tabacco.getSmokingDuration()));
     }
 
     public void setDialogStage(Stage dialogStage) {
@@ -83,7 +93,6 @@ public class TabaccoEditController implements Controller {
         if (tastesField.getText() == null || tastesField.getText().length() == 0) {
             errorMessage += "Поле 'Вкусовые качества' не должно быть пустым!\n";
         }
-
         if (hardnessField.getText() == null || hardnessField.getText().length() == 0) {
             errorMessage += "Поле 'Крепость' не должно быть пустым!\n";
         } else {
@@ -93,6 +102,9 @@ public class TabaccoEditController implements Controller {
             } catch (NumberFormatException e) {
                 errorMessage += "Крепость должна быть числовым значением!\n";
             }
+        }
+        if (Integer.parseInt(hardnessField.getText()) < 0 || Integer.parseInt(hardnessField.getText()) > 10) {
+            errorMessage += "Значение в поле 'Крепость' не должно быть меньше 0 и больше 10!\n";
         }
         if (errorMessage.length() == 0) {
             return true;

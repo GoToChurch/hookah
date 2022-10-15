@@ -12,7 +12,9 @@ import javax.persistence.Table;
 @Scope("prototype")
 public class Darkside extends Tabacco {
     public Darkside() {
-
+        this.hardness = 6;
+        this.smokingDuration = 60;
+        this.heatResistance = "Высокая";
     }
 
 }
