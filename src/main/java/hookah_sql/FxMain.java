@@ -6,10 +6,14 @@ import hookah_sql.controller.TabaccoEditController;
 import hookah_sql.mix.Mix;
 import hookah_sql.tabacco.Tabacco;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +38,6 @@ public class FxMain extends Application {
         primaryStage.setTitle("Hookah");
 
         initRootLayout();
-
     }
 
     public void initRootLayout() {
@@ -42,6 +45,7 @@ public class FxMain extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("/view/main.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            primaryStage.sizeToScene();
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -138,4 +142,5 @@ public class FxMain extends Application {
     public static Stage getPrimaryStage() {
         return primaryStage;
     }
+
 }

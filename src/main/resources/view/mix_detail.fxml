@@ -15,7 +15,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.MixDetailController">
     <children>
-        <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;">
+        <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Label layoutX="841.0" layoutY="19.0" prefHeight="69.0" prefWidth="238.0" text="Hookah" textAlignment="CENTER" textFill="WHITE">
                     <font>
@@ -24,9 +24,9 @@
                 </Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutY="111.0" prefHeight="971.0" prefWidth="1920.0">
+        <AnchorPane layoutY="111.0" prefHeight="971.0" prefWidth="1920.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="111.0">
             <children>
-                <SplitPane dividerPositions="0.29797979797979796" prefHeight="971.0" prefWidth="1920.0">
+                <SplitPane dividerPositions="0.29797979797979796" prefHeight="971.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="422.0">
                             <children>
@@ -39,16 +39,20 @@
                                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                     </columnResizePolicy>
                                 </TableView>
-                        <TextField fx:id="searchField" layoutX="14.0" layoutY="15.0" prefHeight="25.0" prefWidth="368.0" promptText="Введите названия табаков или вкусов в миксе" AnchorPane.bottomAnchor="929.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="15.0">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </TextField>
-                        <Button layoutX="474.0" layoutY="14.0" mnemonicParsing="false" onAction="#getMixFromSearchField" prefHeight="25.0" prefWidth="81.0" text="Найти">
-                           <font>
-                              <Font name="Bookman Old Style" size="14.0" />
-                           </font>
-                        </Button>
+                        <AnchorPane prefHeight="55.0" prefWidth="569.0" AnchorPane.bottomAnchor="914.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TextField fx:id="searchField" layoutY="13.0" prefHeight="25.0" prefWidth="368.0" promptText="Введите названия табаков или вкусов в миксе" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="13.0">
+                                 <font>
+                                    <Font name="Bookman Old Style" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button layoutX="474.0" layoutY="13.0" mnemonicParsing="false" onAction="#getMixFromSearchField" prefHeight="25.0" prefWidth="81.0" text="Найти" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="13.0">
+                                 <font>
+                                    <Font name="Bookman Old Style" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
                             </children>
                         </AnchorPane>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="975.0">
@@ -58,7 +62,7 @@
                                         <Font name="Bookman Old Style" size="19.0" />
                                     </font>
                                 </Label>
-                                <ButtonBar layoutX="672.0" layoutY="803.0" prefHeight="152.0" prefWidth="642.0">
+                                <ButtonBar layoutX="672.0" layoutY="803.0" prefHeight="152.0" prefWidth="642.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="29.0">
                                     <buttons>
                                         <Button fx:id="backButton" mnemonicParsing="false" prefHeight="68.0" prefWidth="126.0" text="Назад">
                                             <font>

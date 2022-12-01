@@ -16,6 +16,9 @@ public class TabaccoController implements Controller {
     private Button tabaccoButton;
 
     @FXML
+    private Button knowledgeButton;
+
+    @FXML
     private Button backButton;
 
     private FxMain fxMain;
@@ -25,6 +28,7 @@ public class TabaccoController implements Controller {
         fxMain = Context.getInstance().getContext().getBean("fxMain", FxMain.class);
         tabaccoListButton.setOnAction(event -> fxMain.openNewScene(tabaccoListButton, "/view/tabacco_list.fxml"));
         tabaccoButton.setOnAction(event -> fxMain.openNewScene(tabaccoButton, "/view/tabacco_detail.fxml"));
+        knowledgeButton.setOnAction(event -> fxMain.openNewScene(knowledgeButton, "/view/tabaccos_knowledge_base.fxml"));
         backButton.setOnAction(event -> fxMain.openNewScene(backButton, "/view/main.fxml"));
     }
 }

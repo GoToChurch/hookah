@@ -15,7 +15,7 @@
                </font></Button><Button fx:id="cancelButton" layoutX="249.375" layoutY="241.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="90.0" text="Cancel" />
             </children>
         </HBox>
-      <Label layoutX="14.0" layoutY="15.0" prefHeight="81.0" prefWidth="402.0" text="Вы уверены, что хотите удалить элемент?">
+      <Label layoutX="14.0" layoutY="15.0" prefHeight="81.0" prefWidth="402.0" text="Вы уверены, что хотите удалить элемент?" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
          <font>
             <Font name="Bookman Old Style" size="18.0" />
          </font>

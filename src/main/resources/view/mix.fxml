@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.MixController">
-    <children>
-        <AnchorPane prefHeight="111.0" prefWidth="1920.0" style="-fx-background-color: #1b0b8d;">
-            <children>
-                <Label layoutX="841.0" layoutY="20.0" prefHeight="69.0" prefWidth="238.0" text="Hookah" textAlignment="CENTER" textFill="WHITE">
-                    <font>
-                        <Font name="Bookman Old Style" size="59.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-        <Button fx:id="randomMixButton" layoutX="706.0" layoutY="196.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить случайный микс" textAlignment="CENTER" textFill="#be6060">
-            <font>
-                <Font name="Bookman Old Style" size="30.0" />
-            </font>
-        </Button>
-      <Button fx:id="mixListButton" layoutX="706.0" layoutY="468.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить список миксов" textAlignment="CENTER" textFill="#be6060">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1059.0" prefWidth="1961.0" spacing="100.0" style="-fx-background-color: #f3dcb8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hookah_sql.controller.MixController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="89.0" prefWidth="1920.0" spacing="500.0" style="-fx-background-color: #1b0b8d;">
+         <children>
+            <Label text="Hookah" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Bookman Old Style" size="59.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Button fx:id="randomMixButton" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить случайный микс" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="mixButton" layoutX="706.0" layoutY="736.0" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить конкретный микс" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="mixListButton" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить список миксов" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="1615.0" layoutY="976.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060">
+      <Button fx:id="mixButton" mnemonicParsing="false" prefHeight="145.0" prefWidth="508.0" text="Получить конкретный микс" textAlignment="CENTER" textFill="#be6060">
          <font>
             <Font name="Bookman Old Style" size="30.0" />
          </font>
       </Button>
-    </children>
-</AnchorPane>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="0.0" prefWidth="1374.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="90.0" prefWidth="291.0" text="Назад" textAlignment="CENTER" textFill="#be6060" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Bookman Old Style" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

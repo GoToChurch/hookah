@@ -4,6 +4,7 @@ import hookah_sql.hibernate.HibernateUtils;
 import hookah_sql.tabacco.Tabacco;
 import hookah_sql.tabacco.TabaccoEnum;
 import hookah_sql.tabacco.TabaccoFactory;
+import hookah_sql.tabacco.TabaccosKnowledgeBase;
 import hookah_sql.utils.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,6 +90,39 @@ public class TabaccoDAO {
             return getObservationListToReturn(tabaccos);
         } catch (Exception e) {
             logger.error("An error occured while connecting with tabacco data base: {}", e.getMessage());
+            return null;
+        }
+    }
+
+    public static ObservableList<TabaccosKnowledgeBase> getTabaccoKnowledgeBySearchQuery(String query) {
+        logger.info("User wants to get tabacco knowledge by search query: {}", query);
+
+        Session session = HibernateUtils.getSession();
+        List<TabaccosKnowledgeBase> tabaccos = new ArrayList<>();
+
+        try(session) {
+            Criteria criteria = session.createCriteria(TabaccosKnowledgeBase.class);
+            criteria.add(Restrictions.like("name", "%" + query + "%"));
+            tabaccos.addAll(criteria.list());
+
+            return getObservationKnowledgeListToReturn(tabaccos);
+        } catch (Exception e) {
+            logger.error("An error occured while connecting with tabaccos knowledge data base: {}", e.getMessage());
+            return null;
+        }
+    }
+
+    public static ObservableList<TabaccosKnowledgeBase> getTabaccoKnowledgeList() {
+        logger.info("User wants to get tabaccos knowledge");
+
+        Session session = HibernateUtils.getSession();
+
+        try(session) {
+            Criteria criteria = session.createCriteria(TabaccosKnowledgeBase.class);
+
+            return getObservationKnowledgeListToReturn(criteria.list());
+        } catch (Exception e) {
+            logger.error("An error occured while connecting with tabaccos knowledge data base: {}", e.getMessage());
             return null;
         }
     }
@@ -267,6 +301,16 @@ public class TabaccoDAO {
         ObservableList<Tabacco> observableTabaccoList = FXCollections.observableArrayList(tabaccos);
 
         for (Tabacco tabacco : observableTabaccoList) {
+            tabacco.prepareProperties();
+        }
+
+        return observableTabaccoList;
+    }
+
+    private static ObservableList<TabaccosKnowledgeBase> getObservationKnowledgeListToReturn(List<TabaccosKnowledgeBase> tabaccos) {
+        ObservableList<TabaccosKnowledgeBase> observableTabaccoList = FXCollections.observableArrayList(tabaccos);
+
+        for (TabaccosKnowledgeBase tabacco : observableTabaccoList) {
             tabacco.prepareProperties();
         }
 
